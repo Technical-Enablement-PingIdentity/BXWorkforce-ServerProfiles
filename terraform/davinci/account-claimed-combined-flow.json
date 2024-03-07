@@ -1,0 +1,118 @@
+{
+  "companyId": "6be19043-f6be-46a4-b3fd-b1c9a51df8e9",
+  "authTokenExpireIds": [],
+  "connectorIds": [
+    "annotationConnector",
+    "httpConnector"
+  ],
+  "createdDate": 1709836041307,
+  "currentVersion": 5,
+  "customerId": "3cdd19ccc36e466942aab641e538c17d",
+  "deployedDate": 1709836046522,
+  "description": "Cloned on Thu Nov 30 2023 23:44:23 GMT+0000 (Coordinated Universal Time). \n",
+  "flowStatus": "enabled",
+  "inputSchemaCompiled": {
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "description": "",
+          "isExpanded": true,
+          "preferredDataType": "string",
+          "type": "string",
+          "name": "email"
+        }
+      },
+      "additionalProperties": false,
+      "required": []
+    }
+  },
+  "isInputSchemaSaved": true,
+  "isOutputSchemaSaved": false,
+  "name": "Account Claim COMBINED",
+  "publishedVersion": 5,
+  "settings": {
+    "csp": "worker-src 'self' blob:; script-src 'self' https://cdn.jsdelivr.net https://code.jquery.com https://devsdk.singularkey.com http://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';",
+    "css": ".companyLogo {\n    /* Ping Logo  */\n    content: url(\"https://uploads.pingone.com/environments/ecbe2e03-7426-4df8-99af-faef0d8edcd8/images/d6a84c0e-b39d-4cbd-b686-9f9da9bf46ae_7c97797a-bb52-48b8-adbb-a603a53a0251_original.png\");\n    width:200px;\n}",
+    "cssLinks": [
+      "https://assets.pingone.com/ux/end-user-nano/0.1.0-alpha.1/end-user-nano.css"
+    ],
+    "customTitle": "Encore",
+    "intermediateLoadingScreenCSS": "",
+    "intermediateLoadingScreenHTML": "",
+    "logLevel": 2,
+    "useCustomCSS": true,
+    "useCustomScript": true
+  },
+  "timeouts": "null",
+  "trigger": {},
+  "updatedDate": 1709836046523,
+  "flowId": "0e39f0a6108acb748a101d4d362c20b8",
+  "versionId": 5,
+  "graphData": {
+    "elements": {
+      "nodes": [
+        {
+          "data": {
+            "id": "kkpo1nhm4w",
+            "nodeType": "CONNECTION",
+            "connectionId": "1e818d711d899f0121df6b3d7bbaaad1",
+            "connectorId": "httpConnector",
+            "name": "Http - BX",
+            "label": "Http - BX",
+            "status": "configured",
+            "capabilityName": "customHtmlMessage",
+            "type": "trigger",
+            "properties": {
+              "messageTitle": {},
+              "message": {
+                "value": "[\n  {\n    \"children\": [\n      {\n        \"text\": \"Success!!\"\n      }\n    ]\n  }\n]"
+              }
+            }
+          },
+          "position": {
+            "x": 400,
+            "y": 404
+          },
+          "group": "nodes",
+          "removed": false,
+          "selected": false,
+          "selectable": true,
+          "locked": false,
+          "grabbable": true,
+          "pannable": false,
+          "classes": ""
+        }
+      ]
+    },
+    "data": {},
+    "zoomingEnabled": true,
+    "userZoomingEnabled": true,
+    "zoom": 1,
+    "minZoom": 1e-50,
+    "maxZoom": 1e+50,
+    "panningEnabled": true,
+    "userPanningEnabled": true,
+    "pan": {
+      "x": 0,
+      "y": 0
+    },
+    "boxSelectionEnabled": true,
+    "renderer": {
+      "name": "null"
+    }
+  },
+  "inputSchema": [
+    {
+      "description": "",
+      "isExpanded": true,
+      "preferredControlType": "textField",
+      "preferredDataType": "string",
+      "propertyName": "email"
+    }
+  ],
+  "flowColor": "#ff661c",
+  "savedDate": 1709836041274,
+  "variables": [],
+  "connections": []
+}
