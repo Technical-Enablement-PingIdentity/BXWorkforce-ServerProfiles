@@ -166,14 +166,12 @@ resource "pingone_application" "end_user_portal_link" {
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 ##########################################################################
 
-// Assign the "Identity Data Admin" role to the DV admin user
 resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
   environment_id       = var.pingone_environment_id
-  user_id              = data.pingone_user.dv_admin_user.id
+  user_id              = var.admin_user_id
   role_id              = data.pingone_role.identity_data_admin.id
   scope_environment_id = pingone_environment.my_environment.id
 }
-
 
 ##########################################################################
 # resource.tf - Declarations for PingOne resources.

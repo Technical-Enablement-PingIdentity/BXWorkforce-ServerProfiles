@@ -8,72 +8,21 @@
 #########################################################################
 # {@link https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/data-sources/connections}
 
+
+resource "time_sleep" "davinci" {
+  create_duration = "120s"
+
+  depends_on = [pingone_environment.my_environment]
+}
+
 data "davinci_connections" "read_all" {
+  depends_on = [
+    #pingone_role_assignment_user.davinci_admin_sso,
+    time_sleep.davinci,
+  ]
   environment_id = pingone_environment.my_environment.id
 }
 
-#resource "davinci_connection" "pingone_connector" {
-#  connector_id   = "pingOneSSOConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "PingOne - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-resource "davinci_connection" "annotation_connector" {
-  name           = "Annotation - BX"
-  connector_id   = "annotationConnector"
-  environment_id = var.pingone_environment_id
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-resource "davinci_connection" "http_connector" {
-  connector_id   = "httpConnector"
-  environment_id = pingone_environment.my_environment.id
-  name           = "Http - BX"
-  depends_on     = [data.davinci_connections.read_all]
-}
-
-#resource "davinci_connection" "pingone_mfa" {
-#  connector_id   = "pingOneMfaConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "PingOne MFA - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-#resource "davinci_connection" "pingone_forms" {
-#  connector_id   = "pingOneFormsConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "PingOne Forms - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-#resource "davinci_connection" "pingone_verify" {
-#  connector_id   = "pingOneVerifyConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "PingOne Verify - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-#resource "davinci_connection" "variable_connector" {
-#  connector_id   = "variablesConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "Variable - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-#resource "davinci_connection" "pingone_authentication" {
-#  connector_id   = "pingOneAuthenticationConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "PingOne Authentication - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
-
-#resource "davinci_connection" "teleport" {
-#  connector_id   = "nodeConnector"
-#  environment_id = pingone_environment.my_environment.id
-#  name           = "Teleport - BX"
-#  depends_on     = [data.davinci_connections.read_all]
-#}
 
 #########################################################################
 # PingOne DaVinci - Create and deploy a flow
@@ -91,15 +40,14 @@ resource "davinci_flow" "account_claimed_flow" {
   environment_id = pingone_environment.my_environment.id
 
   connection_link {
-    id   = davinci_connection.annotation_connector.id
-    name = davinci_connection.annotation_connector.name
+    id   = data.davinci_connection.http_by_name.id
+    name = data.davinci_connection.http_by_name.name
   }
 
   connection_link {
-    id   = davinci_connection.http_connector.id
-    name = davinci_connection.http_connector.name
+    id   = data.davinci_connection.annotation_by_name.id
+    name = data.davinci_connection.annotation_by_name.name
   }
-
 }
 
 #########################################################################
