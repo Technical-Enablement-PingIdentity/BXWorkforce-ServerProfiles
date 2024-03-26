@@ -173,6 +173,31 @@ resource "pingone_role_assignment_user" "admin_sso_identity_admin" {
   scope_environment_id = pingone_environment.my_environment.id
 }
 
+
+##########################################################################
+# PingOne Role Assignment
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_role_assignment}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_configurerolesforworkerapplication}
+##########################################################################
+
+
+resource "pingone_application_role_assignment" "population_identity_data_admin_to_application" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
+  role_id        = data.pingone_role.identity_data_admin.id
+
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
+resource "pingone_application_role_assignment" "population_environment_admin_to_application" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.worker_app.id
+  role_id        = data.pingone_role.environment_admin.id
+
+  scope_environment_id = pingone_environment.my_environment.id
+}
+
+
 ##########################################################################
 # resource.tf - Declarations for PingOne resources.
 # {@link https://developer.hashicorp.com/terraform/language/resources}

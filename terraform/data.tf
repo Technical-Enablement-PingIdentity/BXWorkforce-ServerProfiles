@@ -12,6 +12,10 @@ data "pingone_role" "identity_data_admin" {
   name = "Identity Data Admin"
 }
 
+data "pingone_role" "environment_admin" {
+  name = "Environment Admin"
+}
+
 # PingOne Application Roles
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/role}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_configurerolesforworkerapplication}
